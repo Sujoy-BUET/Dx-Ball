@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Abar hobe igraphics" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Abar hobe igraphics" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add library="opengl32" />
+					<Add library="glu32" />
+					<Add library="glut32" />
+					<Add library="glaux" />
+					<Add library="winmm" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Abar hobe igraphics" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="glut.h" />
+		<Unit filename="iGraphics.h" />
+		<Unit filename="iMain.cpp" />
+		<Unit filename="image/JerryWwalk/1.bmp" />
+		<Unit filename="image/JerryWwalk/10.bmp" />
+		<Unit filename="image/JerryWwalk/11.bmp" />
+		<Unit filename="image/JerryWwalk/12.bmp" />
+		<Unit filename="image/JerryWwalk/13.bmp" />
+		<Unit filename="image/JerryWwalk/14.bmp" />
+		<Unit filename="image/JerryWwalk/15.bmp" />
+		<Unit filename="image/JerryWwalk/16.bmp" />
+		<Unit filename="image/JerryWwalk/17.bmp" />
+		<Unit filename="image/JerryWwalk/18.bmp" />
+		<Unit filename="image/JerryWwalk/19.bmp" />
+		<Unit filename="image/JerryWwalk/2.bmp" />
+		<Unit filename="image/JerryWwalk/3.bmp" />
+		<Unit filename="image/JerryWwalk/4.bmp" />
+		<Unit filename="image/JerryWwalk/5.bmp" />
+		<Unit filename="image/JerryWwalk/6.bmp" />
+		<Unit filename="image/JerryWwalk/7.bmp" />
+		<Unit filename="image/JerryWwalk/8.bmp" />
+		<Unit filename="image/JerryWwalk/9.bmp" />
+		<Unit filename="image/bc.bmp" />
+		<Unit filename="image/bc.jpg" />
+		<Unit filename="image/dx_bc.bmp" />
+		<Unit filename="image/final_bc.bmp" />
+		<Unit filename="image/fire.bmp" />
+		<Unit filename="image/game_bc.bmp" />
+		<Unit filename="image/gameplay1.bmp" />
+		<Unit filename="image/gameplay2.bmp" />
+		<Unit filename="image/gameplay_bc.bmp" />
+		<Unit filename="image/low1.bmp" />
+		<Unit filename="image/low2.bmp" />
+		<Unit filename="image/low3.bmp" />
+		<Unit filename="image/up1.bmp" />
+		<Unit filename="image/up2.bmp" />
+		<Unit filename="image/up3.bmp" />
+		<Unit filename="music/Alarm.wav" />
+		<Unit filename="music/GameOver.wav" />
+		<Unit filename="music/HitBrick.wav" />
+		<Unit filename="music/HitPad.wav" />
+		<Unit filename="music/Pubg.wav" />
+		<Unit filename="music/button.wav" />
+		<Unit filename="music/gameBGmusic.wav" />
+		<Unit filename="music/hit_pad.wav" />
+		<Unit filename="music/mus3.wav" />
+		<Unit filename="music/pubg.mp3" />
+		<Unit filename="stb_image.h" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

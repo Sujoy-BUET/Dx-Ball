@@ -1,0 +1,183 @@
+# include "iGraphics.h"
+#include<iostream>
+#include<windows.h>
+#include<mmsystem.h>
+#include<stdio.h>
+using namespace std;
+#define screenWidth 1200
+#define screenHight 900
+#pragma comment(lib,"winmm.lib")
+/*  function iDraw() is called again and again by the system.   */
+int x=0,y=0,z=0;
+int r=255,g=255,b=255;
+bool music_on=true;
+char bc[4][20]={"image\\01.bmp","image\\02.bmp","image\\03.bmp","image\\04.bmp"};
+int bcIndex=3;
+char naruto[6][20]={"image\\A.bmp","image\\B.bmp","image\\C.bmp","image\\D.bmp","image\\E.bmp","image\\F.bmp"};
+int narutoX=50,narutoY=300,jumpLimit=150,narutoidx=0,jump=0;
+bool isjump=false,jumpUP=false,jumpDown=false,isStand=false;
+int counter=0;
+
+void iDraw() {
+	//place your drawing codes here
+	iClear();
+	// iClear er por korte hoy
+	// ei part bar bar run hote thake
+	// 1) iRectangle(x,y,Len,wid),iFilledRectangle(,,,)
+    // 2) iCircle(x,y,r), iFilledCircle()
+    // 3) iLine(x1,y1,x2,y2)
+    // 4) iEllipse(x,y,a,b) iFilledEllipse()
+    // 5) iSetColor(R,G,B)`
+    // 6) iText(x,y,"",font) font=GLUT_BITMAP.....
+    // 7) iShowBMP(x,y,bc[idx]) & iShowBMP2( , , ,ignore color)
+    
+    
+    iSetColor(r,g,b);
+	//iText(x,y,"SUJOY MOLLICK",GLUT_BITMAP_TIMES_ROMAN_24);
+    if(isjump){
+        if(jumpUP){
+            iShowBMP2(narutoX,narutoY+jump,naruto[3],0);
+            if(jump>jumpLimit){
+                jumpUP=false;
+                jumpDown=true;
+            }
+        }else{
+            iShowBMP2(narutoX,narutoY-jump,naruto[4],0);
+        }
+
+
+    }else{
+        if(isStand){
+            iShowBMP2(narutoX,narutoY,naruto[5],0);
+        }else{
+            iShowBMP2(narutoX,narutoY,naruto[narutoidx],0);
+            counter++;
+            if(counter>=200){
+                counter=0;
+                narutoidx=0;
+                isStand=true;
+            }
+        }
+    }
+
+
+}
+
+/*
+	function iKeyboard() is called whenever the user hits a key in keyboard.
+	key- holds the ASCII value of the key pressed.
+*/
+
+void iKeyboard(unsigned char key) {
+	if (key == 'w'){
+		y+=10;
+	}else if(key=='a'){
+        x-=10;
+	}else if(key=='d'){
+        x+=10;
+    }else if(key=='s'){
+        y-=10;
+    }else if(key=='r'){
+        r=255,g=0,b=0;
+    }else if(key=='g'){
+        r=0,g=255,b=0;
+    }else if(key=='b'){
+        r=0,g=0,b=255;
+    }else if(key==' '){
+        if(!isjump){
+            isjump=true;
+            jumpUP=true;
+        }
+    }
+	//place your codes for other keys here
+}
+
+/*
+	function iSpecialKeyboard() is called whenver user hits special keys like-
+	function keys, home, end, pg up, pg down, arraows etc. you have to use
+	appropriate constants to detect them. A list is:
+	GLUT_KEY_F1, GLUT_KEY_F2, GLUT_KEY_F3, GLUT_KEY_F4, GLUT_KEY_F5, GLUT_KEY_F6,
+	GLUT_KEY_F7, GLUT_KEY_F8, GLUT_KEY_F9, GLUT_KEY_F10, GLUT_KEY_F11, GLUT_KEY_F12,
+	GLUT_KEY_LEFT, GLUT_KEY_UP, GLUT_KEY_RIGHT, GLUT_KEY_DOWN, GLUT_KEY_PAGE UP,
+	GLUT_KEY_PAGE DOWN, GLUT_KEY_HOME, GLUT_KEY_END, GLUT_KEY_INSERT
+	*/
+void iSpecialKeyboard(unsigned char key) {
+
+	if (key == GLUT_KEY_END) {
+		exit(0);
+	}else if(key==GLUT_KEY_DOWN){
+        y-=10;
+	}else if(key==GLUT_KEY_LEFT){
+        x-=10;
+        narutoX-=10;
+	}else if(key==GLUT_KEY_RIGHT){
+        x+=10;
+        narutoidx++;
+        narutoX+=10;
+        if(narutoidx>5) narutoidx=0;
+	}else if(key==GLUT_KEY_UP){
+        y+=10;
+        narutoX+=10,narutoY+=10;
+        narutoidx++;
+        if(narutoidx>6) narutoidx=0;
+
+	}else if(key==GLUT_KEY_HOME){
+        r=255,g=0,b=0;
+	}else if(key==GLUT_KEY_INSERT){
+        r=0,g=0,b=255;
+	}else if(key==GLUT_KEY_F4){
+	    if(music_on){
+            PlaySound(0,0,0);
+            music_on=false;
+	    }else{
+            PlaySound("music\\pubg",NULL,SND_LOOP|SND_ASYNC);
+            music_on=true;
+	    }
+	}
+}
+
+/*
+	function iMouseMove() is called when the user presses and drags the mouse.
+	(mx, my) is the position where the mouse pointer is.
+	*/
+void iMouseMove(int mx, int my) {
+	printf("x = %d, y= %d\n",mx,my);
+	//place your codes here
+	x=mx-150,y=my;
+}
+
+/*
+	function iMouse() is called when the user presses/releases the mouse.
+	(mx, my) is the position where the mouse pointer is.
+	*/
+void iMouse(int button, int state, int mx, int my) {
+	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+		//place your codes here
+		//	printf("x = %d, y= %d\n",mx,my);
+		x =  mx-150;
+		y =  my;
+	}
+	if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN) {
+		//place your codes here
+		r = 255,g=0,b=0;
+	}
+}
+
+int dx=100,dy=30;
+void change(){
+    if(isjump){
+        jump+=dy;
+        narutoX+=50;
+        return;
+    }
+    narutoX+=dx;
+    narutoidx++;
+}
+
+int main() {
+    iSetTimer(200,change);
+    if(music_on)
+        PlaySound("music\\Pubg",NULL,SND_LOOP|SND_ASYNC);
+	iInitialize(screenWidth,screenHight, "My Game"); // gives frame of the code
+	return 0;
+}
